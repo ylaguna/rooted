@@ -1,0 +1,36 @@
+{
+  "header": {
+    "mode": "image",
+    "name": "ROOTED",
+    "logo": "assets/rooted.png"
+  },
+  "bio": "Curating cozy underground music nights in Amsterdam, blending house, techno, and more for an international community.",
+  "theme": "rooted",
+  "background": "particles",
+  "fonts": {
+    "heading": "Bebas Neue",
+    "body": "Inter"
+  },
+  "links": [
+    {
+      "name": "Instagram",
+      "url": "https://instagram.com/rooted.collective.ams",
+      "icon": "instagram"
+    },
+    {
+      "name": "SoundCloud",
+      "url": "https://soundcloud.com/rooted-collective",
+      "icon": "soundcloud"
+    }
+  ],
+  "events": [
+    {
+      "name": "Common Ground 3rd Edition",
+      "date": "2026-05-30",
+      "venue": "Toekomstmuziek",
+      "location": "Amsterdam, NL",
+      "ticketUrl": "https://ra.co/events/2437295",
+      "flyerImage": "assets/events/20260530.png"
+    }
+  ]
+}
