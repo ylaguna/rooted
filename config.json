@@ -2,7 +2,7 @@
   "header": {
     "mode": "image",
     "name": "ROOTED",
-    "logo": "assets/rooted.png"
+    "logo": "/assets/rooted.png"
   },
   "bio": "Curating cozy underground music nights in Amsterdam, blending house, techno, and more for an international community.",
   "theme": "rooted",
