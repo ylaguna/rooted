@@ -136,7 +136,7 @@ function renderGalleries(galleries) {
     }
     let html = '<h2>GALLERIES</h2>';
     html += galleries.map(gallery => `
-        <a class="event-card gallery-card" href="galleries/${gallery.slug}/">
+        <a class="event-card gallery-card" href="galleries/index.html?gallery=${gallery.slug}">
             ${gallery.coverImage ? `<img class="event-flyer" src="${gallery.coverImage}" alt="${gallery.name}">` : ''}
             <div class="event-info">
                 <div class="event-name">${gallery.name}</div>

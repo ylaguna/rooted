@@ -305,10 +305,130 @@ body[data-bg="particles"] #particles-canvas {
   color: var(--accent);
 }
 
-.gallery-embed {
-  border-radius: 12px;
-  overflow: hidden;
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  margin: 0 -2px;
+}
+
+.photo-grid-item {
+  position: relative;
+  aspect-ratio: 1;
+  padding: 0;
+  border: none;
+  cursor: pointer;
   background: var(--card-bg);
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.photo-grid-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.photo-grid-item:hover img {
+  opacity: 0.9;
+  transform: scale(1.03);
+}
+
+.gallery-album-link {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.gallery-album-link a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.gallery-album-link a:hover {
+  color: var(--accent);
+}
+
+.gallery-error {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.94);
+  padding: 48px 16px;
+}
+
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+  user-select: none;
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  border: none;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  line-height: 1;
+  padding: 8px;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+
+.lightbox-close:hover,
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  opacity: 1;
+}
+
+.lightbox-close {
+  top: 12px;
+  right: 12px;
+  font-size: 2rem;
+}
+
+.lightbox-prev,
+.lightbox-next {
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.5rem;
+}
+
+.lightbox-prev {
+  left: 8px;
+}
+
+.lightbox-next {
+  right: 8px;
+}
+
+.lightbox-counter {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.85rem;
 }
 
 @media (max-width: 480px) {

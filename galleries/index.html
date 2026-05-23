@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery · ROOTED</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body data-theme="dark" data-page="gallery" data-config="../config.json">
+  <canvas id="particles-canvas"></canvas>
+  <div class="background-overlay"></div>
+  <main class="container">
+    <section id="header"></section>
+    <section class="gallery-page">
+      <a class="back-link" href="../">← Back</a>
+      <h2 id="gallery-title">Gallery</h2>
+      <div class="photo-grid" id="photo-grid" aria-busy="true"></div>
+      <p class="gallery-album-link">
+        <a id="gallery-album-link" href="#" target="_blank" rel="noopener noreferrer">Open full album on Google Photos</a>
+      </p>
+    </section>
+  </main>
+
+  <div class="lightbox" id="lightbox" hidden>
+    <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
+    <button type="button" class="lightbox-prev" aria-label="Previous photo">&#8249;</button>
+    <img class="lightbox-img" id="lightbox-img" alt="">
+    <button type="button" class="lightbox-next" aria-label="Next photo">&#8250;</button>
+    <span class="lightbox-counter" id="lightbox-counter"></span>
+  </div>
+
+  <script src="../script.js"></script>
+  <script src="gallery-feed.js"></script>
+</body>
+
+</html>
