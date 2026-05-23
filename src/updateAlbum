@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+API_URL="https://www.publicalbum.org/api/v2/webapp/embed-player/jsonrpc"
+
+usage() {
+  echo "Usage: $0 <photos.json>" >&2
+  echo "  Fetches Google Photos album via Public Album API and updates items (and title)." >&2
+  exit 1
+}
+
+[[ $# -eq 1 ]] || usage
+[[ -f "$1" ]] || { echo "error: file not found: $1" >&2; exit 1; }
+command -v jq >/dev/null || { echo "error: jq is required" >&2; exit 1; }
+command -v curl >/dev/null || { echo "error: curl is required" >&2; exit 1; }
+
+CONFIG="$1"
+GALLERY_URL="$(jq -r '.galleryUrl // empty' "$CONFIG")"
+[[ -n "$GALLERY_URL" ]] || { echo "error: galleryUrl missing in $CONFIG" >&2; exit 1; }
+
+IMAGE_WIDTH="$(jq -r '.imageWidth // 1920' "$CONFIG")"
+IMAGE_HEIGHT="$(jq -r '.imageHeight // 1080' "$CONFIG")"
+
+PAYLOAD="$(jq -n \
+  --arg link "$GALLERY_URL" \
+  --argjson w "$IMAGE_WIDTH" \
+  --argjson h "$IMAGE_HEIGHT" \
+  '{
+    method: "getGooglePhotosAlbum",
+    params: {
+      sharedLink: $link,
+      imageWidth: $w,
+      imageHeight: $h,
+      includeThumbnails: false,
+      videoQuality: "1080p",
+      attachMetadata: false
+    }
+  }')"
+
+echo "Fetching album: $GALLERY_URL" >&2
+RESPONSE="$(curl -sf "$API_URL" \
+  -X POST \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: text/plain;charset=UTF-8' \
+  --data-raw "$PAYLOAD")"
+
+if ! echo "$RESPONSE" | jq -e '.result.mediaItems' >/dev/null 2>&1; then
+  echo "error: unexpected API response" >&2
+  echo "$RESPONSE" | jq . >&2 || echo "$RESPONSE" >&2
+  exit 1
+fi
+
+COUNT="$(echo "$RESPONSE" | jq '.result.mediaItems | length')"
+TMP="$(mktemp)"
+
+jq \
+  --argjson items "$(echo "$RESPONSE" | jq '[.result.mediaItems[].url | capture("/pw/(?<id>.+)=w[0-9]+-h[0-9]+").id]')" \
+  '.items = $items' \
+  "$CONFIG" >"$TMP"
+
+mv "$TMP" "$CONFIG"
+echo "Updated $CONFIG ($COUNT photos)" >&2
