@@ -100,7 +100,7 @@ function renderBio(bio) {
 function renderLinks(links) {
     const el = document.getElementById('links');
     el.innerHTML = links.map(link => `
-        <a class="link-btn" href="${link.url}" target="_blank" rel="noopener noreferrer">
+        <a class="link-btn${link.half ? ' link-btn--half' : ''}" href="${link.url}" target="_blank" rel="noopener noreferrer">
             ${ICONS[link.icon] || ''}
             <span>${link.name}</span>
         </a>
@@ -127,6 +127,26 @@ function renderEvents(events) {
     el.innerHTML = html;
 }
 
+function renderGalleries(galleries) {
+    const el = document.getElementById('galleries');
+    if (!el) return;
+    if (!galleries || galleries.length === 0) {
+        el.style.display = 'none';
+        return;
+    }
+    let html = '<h2>GALLERIES</h2>';
+    html += galleries.map(gallery => `
+        <a class="event-card gallery-card" href="galleries/${gallery.slug}/">
+            ${gallery.coverImage ? `<img class="event-flyer" src="${gallery.coverImage}" alt="${gallery.name}">` : ''}
+            <div class="event-info">
+                <div class="event-name">${gallery.name}</div>
+                <div class="event-details">${formatDate(gallery.date)}${gallery.details ? ` · ${gallery.details}` : ''}</div>
+            </div>
+        </a>
+    `).join('');
+    el.innerHTML = html;
+}
+
 async function init() {
     const configFile = document.body.getAttribute('data-config') || 'config.json';
     const res = await fetch(configFile);
@@ -136,10 +156,15 @@ async function init() {
     loadFonts(config.fonts);
     applyTheme(config.theme);
     applyBackground(config.background);
+    const page = document.body.getAttribute('data-page') || 'home';
+
     renderHeader(config.header);
-    renderBio(config.bio);
-    renderLinks(config.links);
-    renderEvents(config.events);
+    if (page === 'home') {
+        renderBio(config.bio);
+        renderLinks(config.links);
+        renderEvents(config.events);
+        renderGalleries(config.galleries);
+    }
 }
 
 init();

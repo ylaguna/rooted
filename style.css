@@ -174,8 +174,8 @@ body[data-bg="particles"] #particles-canvas {
 }
 
 #links {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 12px;
   margin-bottom: 48px;
 }
@@ -185,7 +185,7 @@ body[data-bg="particles"] #particles-canvas {
   align-items: center;
   justify-content: center;
   gap: 12px;
-  width: 100%;
+  min-width: 0;
   padding: 16px 24px;
   background: var(--btn-bg);
   border: 1px solid var(--btn-border);
@@ -196,6 +196,10 @@ body[data-bg="particles"] #particles-canvas {
   font-size: 1rem;
   font-weight: 500;
   transition: background 0.2s, transform 0.2s;
+}
+
+.link-btn:not(.link-btn--half) {
+  grid-column: 1 / -1;
 }
 
 .link-btn:hover {
@@ -210,12 +214,21 @@ body[data-bg="particles"] #particles-canvas {
   flex-shrink: 0;
 }
 
-#events h2 {
+#events h2,
+#galleries h2 {
   font-family: var(--font-heading);
   font-size: 1.5rem;
   letter-spacing: 0.05em;
   margin-bottom: 16px;
   color: var(--accent);
+}
+
+#events {
+  margin-bottom: 48px;
+}
+
+#galleries {
+  margin-bottom: 48px;
 }
 
 .event-card {
@@ -267,6 +280,37 @@ body[data-bg="particles"] #particles-canvas {
   opacity: 0.75;
 }
 
+.gallery-page {
+  margin-top: 8px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 24px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.back-link:hover {
+  color: var(--accent);
+}
+
+.gallery-page h2 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+  color: var(--accent);
+}
+
+.gallery-embed {
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--card-bg);
+}
+
 @media (max-width: 480px) {
   .container {
     padding: 40px 16px 32px;
@@ -274,5 +318,9 @@ body[data-bg="particles"] #particles-canvas {
 
   #header .artist-name {
     font-size: 2.8rem;
+  }
+
+  #links {
+    grid-template-columns: 1fr;
   }
 }

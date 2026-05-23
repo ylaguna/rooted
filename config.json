@@ -15,12 +15,14 @@
     {
       "name": "Instagram",
       "url": "https://instagram.com/rooted.collective.ams",
-      "icon": "instagram"
+      "icon": "instagram",
+      "half": true
     },
     {
       "name": "SoundCloud",
       "url": "https://soundcloud.com/rooted-collective",
-      "icon": "soundcloud"
+      "icon": "soundcloud",
+      "half": true
     }
   ],
   "events": [
@@ -31,6 +33,15 @@
       "location": "Amsterdam, NL",
       "ticketUrl": "https://ra.co/events/2437295",
       "flyerImage": "assets/events/20260530.png"
+    }
+  ],
+  "galleries": [
+    {
+      "name": "Common Ground 2nd Edition",
+      "date": "2025-03-06",
+      "details": "Common Ground invites Dan Fresco - Toekomstmuziek",
+      "slug": "common-ground-2",
+      "coverImage": "https://lh3.googleusercontent.com/pw/AP1GczNoBbbHyTbwKBRGdONT9WvAhtuFGBPgYoAJQwmYEYIgortSTB5xouVdnac7Wbm8pCr7lfYRUAaXPEKF-m9ASGUMdeoME8MgMT_1XvA3mZsLHC6-FQ=w400-h300"
     }
   ]
 }
