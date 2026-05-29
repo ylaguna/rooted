@@ -280,15 +280,52 @@ body[data-bg="particles"] #particles-canvas {
   opacity: 0.75;
 }
 
+body[data-page="gallery"] {
+  height: 100dvh;
+  overflow: hidden;
+}
+
+body[data-page="gallery"] .container {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
+  padding-top: 2em;
+  padding-bottom: 1em;
+  box-sizing: border-box;
+}
+
+body[data-page="gallery"] #header {
+  flex-shrink: 0;
+}
+
+body[data-page="gallery"] .gallery-page {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+body[data-page="gallery"] .gallery-toolbar {
+  flex-shrink: 0;
+}
+
+body[data-page="gallery"] .gallery-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
 .gallery-page {
   margin-top: 8px;
 }
 
 .gallery-toolbar {
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  background: var(--bg);
   padding-bottom: 12px;
   margin-bottom: 4px;
 }
@@ -452,6 +489,10 @@ body[data-bg="particles"] #particles-canvas {
 @media (max-width: 480px) {
   .container {
     padding: 40px 16px 32px;
+  }
+
+  body[data-page="gallery"] .container {
+    padding: 24px 16px 12px;
   }
 
   #header .artist-name {

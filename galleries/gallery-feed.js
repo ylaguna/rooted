@@ -40,7 +40,9 @@
 
     function closeLightbox() {
         lightbox.hidden = true;
-        document.body.style.overflow = '';
+        if (document.body.getAttribute('data-page') !== 'gallery') {
+            document.body.style.overflow = '';
+        }
     }
 
     function updateLightbox() {
