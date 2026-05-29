@@ -162,7 +162,7 @@ body[data-bg="particles"] #particles-canvas {
 }
 
 #header .artist-logo {
-  max-width: 15rem;
+  max-width: 13rem;
   height: auto;
 }
 
@@ -316,9 +316,20 @@ body[data-page="gallery"] .gallery-toolbar {
 body[data-page="gallery"] .gallery-scroll {
   flex: 1;
   min-height: 0;
+  overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+body[data-page="gallery"] .gallery-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+body[data-page="gallery"] .photo-grid {
+  margin: 0;
 }
 
 .gallery-page {
@@ -500,7 +511,7 @@ body[data-page="gallery"] .gallery-scroll {
   }
 
   #header .artist-logo {
-    max-width: 12rem;
+    max-width: 13rem;
     height: auto;
   }
 
